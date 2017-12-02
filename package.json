@@ -1,0 +1,19 @@
+{
+  "name": "eventsinthecity-client",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "cheerio": "^1.0.0-rc.2",
+    "connect-mongo": "*",
+    "ejs": "*",
+    "express": "3.2.6",
+    "express-session": "*",
+    "mongodb": "*",
+    "mysql": "^2.15.0",
+    "request": "^2.83.0"
+  }
+}

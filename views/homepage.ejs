@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Events in The City</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/homepage.css' />
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="angularjs/login.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+</head>
+
+<body ng-app="mylogin" ng-controller="login">
+
+  <header>
+
+    <div class="displaycontent" style="z-index: 1000;">
+      <div class="navi">
+        <nav class="navbar navbar-expand-lg  custom-navbar">
+          <a class="navbar-brand custom-brand" href="/homepage">Events In the City</a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav mr-auto">
+
+              <li class="nav-item">
+                <a class="nav-link" href="/about">ABOUT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contactUs">CONTACT US</a>
+              </li>
+            </ul>
+
+              <div class= "navbar-collapse collapse dual-collapse">
+              <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link" href="/profile">PROFILE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" ng-click="logout()">LOGOUT</a>
+              </li>
+            </ul>
+          </div>
+            </div>
+        </nav>
+
+    </div>
+  </div>
+    <hr/>
+
+  </header>
+
+  <div class="displaycontent">
+    <h2>Discover and Learn</h2>
+    <h3>Tech and Fun Events in the same space</h3>
+  </div>
+
+  <div class="container boxsplit">
+    <div class="box1">
+      <a href="/techEvents">
+      <img src="images/office.jpg">
+      <span class="imagetitle">Tech Events</span>
+    </a>
+    </div>
+    <div class="gap">
+      <span></span>
+    </div>
+    <div class="box2">
+      <a href="/funEvents">
+      <img src="images/lake.jpg">
+      <span class="imagetitle">Fun Events</span>
+    </a>
+    </div>
+  </div>
+
+  <div id="padding-1" class="inbetween">
+    <hr/>
+  </div>
+
+
+  <div class="container sampleEvents">
+<h3>Most Happening Events</h3>
+
+    <div class="row">
+
+      <div class="col s12 m6">
+        <div class="card small">
+          <div class="card-image">
+            <img src="images/lake.jpg">
+            <span class="card-title"><%= featured[0].title %></span>
+          </div>
+          <div class="card-content">
+            <p>
+              <%= featured[0].description %>
+            </p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col s12 m6">
+        <div class="card small">
+          <div class="card-image">
+            <img src="images/office.jpg">
+            <span class="card-title"><%= featured[1].title %></span>
+          </div>
+          <div class="card-content">
+            <p>
+              <%= featured[1].description %>
+            </p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col s12 m6">
+        <div class="card small">
+          <div class="card-image">
+            <img src="images/index.jpeg">
+            <span class="card-title"><%= featured[2].title %></span>
+          </div>
+          <div class="card-content">
+            <p>
+              <%= featured[2].description %>
+            </p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+
+</div>
+</div>
+
+<footer>
+  <div class="footer">
+    <p class="footertext">Copyright © 2017 Events in the City. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+
+</body>
+
+</html>
