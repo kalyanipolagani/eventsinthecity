@@ -13,6 +13,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="angularjs/login.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+  <script type = "text/javascript" >
+    function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+    </script>
 </head>
 
 <body ng-app="mylogin" ng-controller="login" class="ng-scope">
@@ -101,42 +106,6 @@
         </div>
       </div>
 <% } %>
-<!--
-      <div class="col s12 m6">
-        <div class="card small">
-          <div class="card-image">
-            <img src="images/office.jpg">
-            <span class="card-title"><%= featured[1].title %></span>
-          </div>
-          <div class="card-content">
-            <p>
-              <%= featured[1].description %>
-            </p>
-          </div>
-          <div class="card-action">
-            <a href="#">This is a link</a>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col s12 m6">
-        <div class="card small">
-          <div class="card-image">
-            <img src="images/index.jpeg">
-            <span class="card-title"><%= featured[2].title %></span>
-          </div>
-          <div class="card-content">
-            <p>
-              <%= featured[2].description %>
-            </p>
-          </div>
-          <div class="card-action">
-            <a href="#">This is a link</a>
-          </div>
-        </div>
-      </div>
--->
 </div>
 </div>
 

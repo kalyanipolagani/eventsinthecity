@@ -6,8 +6,9 @@ var mongo = require("./mongoConnect");
 var mongoURL = "mongodb://ec2-54-183-239-166.us-west-1.compute.amazonaws.com:27017/cmpe295";
 
 var fe = [];
+var recommendFun=[];
 mongo.connect(mongoURL, function(db) {
-  console.log('Connected to mongo at: ' + mongoURL);
+  //console.log('Connected to mongo at: ' + mongoURL);
 
   var coll1 = db.collection('featuredEvents');
   coll1.find().toArray(function(err, result) {
@@ -23,8 +24,6 @@ mongo.connect(mongoURL, function(db) {
 exports.index = function(req, res) {
   //console.log(JSON.stringify(req.session.email));
   req.session.destroy();
-  console.log("Featured Events!!!!");
-  console.log(fe);
   res.render('index', {
     title: 'Events in the City',
     featured: fe
@@ -33,7 +32,7 @@ exports.index = function(req, res) {
 
 exports.featured = function(req, res) {
   var eventid = req.param("id");
-  console.log("Featured Events Details page!!!!");
+  //console.log("Featured Events Details page!!!!");
   for (var i = 0; i < fe.length; i++) {
     if (fe[i].id == eventid) {
 
@@ -45,6 +44,7 @@ exports.featured = function(req, res) {
       event.description = fe[i].description;
       event.image = fe[i].image;
       event.location = fe[i].location;
+      event.url = fe[i].url;
 
       res.render('featuredEvents', {
         title: 'Events in the City',
@@ -53,6 +53,7 @@ exports.featured = function(req, res) {
     };
   }
 };
+
 //Render Homepage
 exports.homepage = function(req, res) {
   if (req.session.email) {
@@ -74,6 +75,36 @@ exports.clickOnLoginButton = function(req, res) {
   });
 };
 
+exports.listFeaturedEventDetails = function(req, res) {
+	  var eventid = req.param("id");
+	  //console.log("Featured Events Details page!!!!");
+
+	  for(var i = 0; i < 3; i++){
+          var randomNumber =  Math.floor(Math.random() * fe.length)
+          //console.log("inside recommendations" + randomNumber)
+          recommendFun[i]=fe[randomNumber];
+      }
+
+	  for (var i = 0; i < fe.length; i++) {
+	    if (fe[i].id == eventid) {
+
+	      event = {};
+
+	      event.id = eventid;
+	      event.title = fe[i].title;
+	      event.time = fe[i].time;
+	      event.description = fe[i].description;
+	      event.image = fe[i].image;
+	      event.location = fe[i].location;
+	      event.url = fe[i].url;
+
+	      res.render('featuredEventDetails', {
+	        title: 'Events in the City',
+	        featuredEvent: event,recommend: recommendFun,
+	      });
+	    };
+	  }
+	};
 
 
 exports.about = function(req, res) {
