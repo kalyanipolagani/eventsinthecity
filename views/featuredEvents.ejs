@@ -33,6 +33,18 @@
                 <a class="nav-link" href="/contactUs">CONTACT US</a>
               </li>
             </ul>
+
+            <div class="navbar-collapse collapse dual-collapse">
+              <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">SIGNUP</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">LOGIN</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
 
@@ -40,59 +52,40 @@
     </div>
     <hr/>
   </header>
+
   <div class="backpage">
     <a class="back" onclick="window.history.back()">Go back to Home page</a>
   </div>
-  <div id="paddingc" class="inbetween">
-  </div>
-  <section id="contact">
-    <div class="container">
-      <div class="jumbotron contact">
-      <div class="well well-sm">
-        <h3><strong>Contact Us</strong></h3>
-      </div>
 
-      <div class="container">
 
-        <div class="column">
-          <p>1 Washington Sq, San Jose, CA 95192, USA</p>
-          <p>+1 (669) 242-6994</p>
-          <p>eventsinthecity@gmail.com </p>
+  <div class="container details">
+    <p class="detailtitle">Event Details</p>
+    <div class="jumbotron details">
+
+      <div>
+        <h2><%= featuredEvent.title %></h2>
+        <div class="card-image">
+          <img src="<%= featuredEvent.image %>" alt="No image available" />
         </div>
+          <Strong>Time : </Strong>
+          <%=featuredEvent.time%>
+        </p>
+        <p>
+          <Strong>Location : </Strong>
+          <%=featuredEvent.location%>
+        </p>
+        <p>
+          <Strong>Description: </Strong>
+          <%=featuredEvent.description%>
+        </p>
+        <p>
+        <p>
+            <a class="findout" href="/login">Find out More...</a>
 
-        <div class="column">
-          <div id="map-canvas"></div>
-        </div>
-
+        </p>
       </div>
 
-      <div class="col-md-5">
-        <h4><strong>Get in Touch</strong></h4>
-        <form>
-          <div class="form-group">
-            <input type="text" class="form-control" name="" value="" placeholder="Name">
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-control" name="" value="" placeholder="E-mail">
-          </div>
-          <div class="form-group">
-            <input type="tel" class="form-control" name="" value="" placeholder="Phone">
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" name="" rows="3" placeholder="Message"></textarea>
-          </div>
-          <button class="btn btn-default" type="submit" name="button">
-              <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Submit
-          </button>
-        </form>
-      </div>
     </div>
-    </div>
-    </div>
-
-  </section>
-
-  <div id="paddingc" class="inbetween">
   </div>
 
   <footer>
@@ -100,28 +93,6 @@
       <p class="footertext">Copyright © 2017 Events in the City. All Rights Reserved.</p>
     </div>
   </footer>
-
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp-7ZGM2bsKoRAXPcBUKu9XrM7vmikxFM&callback=initMap">
-  </script>
-
-  <script>
-    function initMap() {
-      var myLatLng = {
-        lat: +37.3352,
-        lng: -121.8811
-      };
-      var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        zoom: 4,
-        center: myLatLng
-      });
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'Hello World!'
-      });
-    }
-  </script>
-
 </body>
 
 </html>
