@@ -81,6 +81,12 @@
 
         </p>
       </div>
+      
+      <form action="/savefeaturedDetails" method="post" class="save">
+        <input type="hidden" id="eventid" name="eventid" value=<%=featuredEvent.id%>>
+        <input type="hidden" id="eventType" name="eventType" value=<%=featuredEvent.type%>>
+        <input type="submit" class="btn btn-info saveeventf" value="Save Event">
+      </form>
 
     </div>
   </div>
@@ -96,7 +102,7 @@
       <div class="col s12 m6">
         <div class="card small">
           <div class="card-image">
-            <img src="images/lake.jpg">
+            <img src=<%= recommend[0].image %> alt="images/office.jpeg">
           </div>
           <div class="card-content">
             <p>
@@ -112,7 +118,7 @@
       <div class="col s12 m6">
         <div class="card small">
           <div class="card-image">
-            <img src="images/office.jpg">
+            <img src=<%= recommend[1].image %> alt="images/office.jpeg">
           </div>
           <div class="card-content">
             <p>
@@ -128,7 +134,7 @@
       <div class="col s12 m6">
         <div class="card small">
           <div class="card-image">
-            <img src="images/index.jpeg">
+            <img src=<%= recommend[2].image %> alt="images/index.jpeg">
           </div>
           <div class="card-content">
             <p>

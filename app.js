@@ -63,6 +63,8 @@ app.get('/featuredEventDetails',routes.listFeaturedEventDetails)
 
 app.post('/savetechDetails',events.savetechDetails);
 app.post('/savefunDetails',events.savefunDetails);
+app.post('/savefeaturedDetails',routes.savefeaturedDetails);
+app.post('/savecontactmessage',routes.savecontactmessage);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

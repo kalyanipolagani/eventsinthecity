@@ -160,6 +160,19 @@ function searchEventTitle(req, res, output) {
                             output[j].url = result[5].funeventsSF[i].url;
                         }
                     }
+                    for (var i = 0; i < result[6].featuredEvents.length; i++) {
+                        if (output[j].id == result[6].featuredEvents[i].id) {
+                            //console.log("getSFFunDetails" + result[5].funeventsSF[i].id)
+                            //console.log(result[5].funeventsSF[i].title);
+                            output[j].id = result[6].featuredEvents[i].id;
+                            output[j].type = result[6].featuredEvents[i].type;
+                            output[j].cat = "fe";
+                            output[j].link = "featuredEventDetails";
+                            output[j].image = result[6].featuredEvents[i].image;
+                            output[j].title = result[6].featuredEvents[i].title;
+                            output[j].url = result[6].featuredEvents[i].url;
+                        }
+                    }
                 }
             }
             exportData(req,res, output)

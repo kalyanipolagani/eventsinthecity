@@ -77,6 +77,8 @@ exports.clickOnLoginButton = function(req, res) {
 
 exports.listFeaturedEventDetails = function(req, res) {
 	  var eventid = req.param("id");
+	  var eventType = req.param("type");
+      var eventCategory = req.param("cat");
 	  //console.log("Featured Events Details page!!!!");
 
 	  for(var i = 0; i < 3; i++){
@@ -87,25 +89,70 @@ exports.listFeaturedEventDetails = function(req, res) {
 
 	  for (var i = 0; i < fe.length; i++) {
 	    if (fe[i].id == eventid) {
+	      
+		  event={};
+          event.userid = req.session.email;
+          event.id=eventid;
+          event.type=eventType;
+          event.category=eventCategory;
 
-	      event = {};
+          mongo.connect(mongoURL, function(){
+              //console.log('Connected to mongo at: ' + mongoURL);
+              var coll1 = mongo.collection('userevents');
 
-	      event.id = eventid;
-	      event.title = fe[i].title;
-	      event.time = fe[i].time;
-	      event.description = fe[i].description;
-	      event.image = fe[i].image;
-	      event.location = fe[i].location;
-	      event.url = fe[i].url;
+              coll1.update({
+                  id: event.id},
+			  	  {$set:{'userid': event.userid, 'type': event.type, 'category': event.category}},
+				  {upsert: true}
+              );
+
+        /*      coll1.insert(event,(function(err, user){
+                  if (!err) {
+                      console.log("Details saved successfully  ");
+                  } else {
+                      console.log("returned false"+err);
+                  }
+              })); */
+
+          });
 
 	      res.render('featuredEventDetails', {
 	        title: 'Events in the City',
-	        featuredEvent: event,recommend: recommendFun,
+	        featuredEvent: fe[i],recommend: recommendFun,
 	      });
 	    };
 	  }
 	};
 
+	
+exports.savefeaturedDetails = function(req, res){
+
+		var featuredeventid = req.body.eventid;
+		var featuredtype = req.body.eventType;
+
+
+		var feafvrt = {
+				userid : req.session.email,
+				eventid : req.body.eventid,
+				type : req.body.eventType,
+				category : "fun",
+			};
+
+		mongo.connect(mongoURL, function(){
+			//console.log('Connected to mongo at: ' + mongoURL);
+			var coll = mongo.collection('favoriteEvents');
+
+			coll.update({
+				eventid: feafvrt.eventid},
+			  	  {$set:{'userid': feafvrt.userid, 'type': feafvrt.type, 'category': feafvrt.category}},
+				  {upsert: true}
+	        );
+
+		});
+		res.redirect('/featuredEventDetails?id='+featuredeventid+'&type='+featuredtype+'&cat=fe');
+};
+
+	
 
 exports.about = function(req, res) {
   res.render('about');
@@ -113,4 +160,38 @@ exports.about = function(req, res) {
 
 exports.contactUs = function(req, res) {
   res.render('contactUs');
+};
+
+exports.savecontactmessage = function(req, res){
+
+	var username = req.body.UserName;
+	var useremail = req.body.UserEmail;
+	var userphone = req.body.UserPhone;
+	var usermessage = req.body.UserMessage;
+
+
+	var contact = {
+			userid : req.session.email,
+			username : req.body.UserName,
+			useremail : req.body.UserEmail,
+			userphone : req.body.UserPhone,
+			usermessage : req.body.UserMessage,
+		};
+
+	mongo.connect(mongoURL, function(){
+		//console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('contactUs');
+
+		coll.insert(contact,(function(err, user){
+			if (user) {
+
+				console.log("Details saved successfully  ");
+
+			} else {
+				console.log("returned false");
+			}
+		}));
+
+	});
+	res.redirect('contactUs');
 };
